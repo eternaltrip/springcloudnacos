@@ -10,5 +10,6 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "sales")
 public class SalesProperties {
     private boolean enable;
-    private  String desc;
+    private String desc;
+    private String beginTime;
 }

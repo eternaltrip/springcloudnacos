@@ -13,7 +13,6 @@ import org.yj.service.UserService;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-@RefreshScope
 public class UserController {
 
     @Autowired
@@ -23,11 +22,7 @@ public class UserController {
     Environment environment;
 
 
-    /**
-     * 这里的配置属性时从nacos上获取的，
-     */
-    @Value("${sales.enable}")
-    private String salesEnable;
+
 
 
     /**
@@ -47,7 +42,6 @@ public class UserController {
     @GetMapping("/{id}")
     public User queryById(@PathVariable("id") Long id) {
         System.out.println(environment.getProperty("local.server.port"));
-        System.out.println("salesEnable:" + salesEnable);
         System.out.println(salesProperties.toString());
         return userService.queryById(id);
     }
