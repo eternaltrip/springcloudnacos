@@ -5,9 +5,10 @@ spring:
     active: dev
   cloud:
     nacos:
-      server-addr: localhost:8848
+      server-addr: localhost:80
       config:
         file-extension: yaml #文件后缀
-        namespace: bfb98208-b2e4-4e71-9375-ff16941c7522 #获取配置文件的命名空间，
+        namespace: 3b0a8c43-b94e-43a5-89b2-43ac17968344 #获取配置文件的命名空间，
       discovery:
-        namespace: bfb98208-b2e4-4e71-9375-ff16941c7522 #发布服务实例的命名空间，
+        namespace: 3b0a8c43-b94e-43a5-89b2-43ac17968344 #发布服务实例的命名空间，
+        cluster-name: chengdu
