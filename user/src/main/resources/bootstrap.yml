@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: userservice
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        file-extension: yaml #文件后缀
+        namespace: bfb98208-b2e4-4e71-9375-ff16941c7522 #获取配置文件的命名空间，
+      discovery:
+        namespace: bfb98208-b2e4-4e71-9375-ff16941c7522 #发布服务实例的命名空间，

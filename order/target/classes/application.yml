@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+
+spring:
+  application:
+    name: orderservice
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/cloud_order?serverTimezone=UTC
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        cluster-name: chengdu #设置集群名称
+        namespace: bfb98208-b2e4-4e71-9375-ff16941c7522 #这里是设置服务注册的命名空间（不同的命名空间的服务不互通）
+        ephemeral: false #临时实例对象（默认为false，改为true后，就会被nacos主动关怀，并且不会被服务列表剔除；临时实例时，如果服务不可用，就会被剔除。）
+#nacos和euraka的区别：nacos可以主动推送服务实例，nacos默认ap模式，和eureka一样，但是当实例中由非临时实例时，nacos转化成cp模式（高可靠）
+userservice:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule  # 负载均衡规则（这里是优先访问同集群实例，如果同集群挂了，那么就会访问其他的集群，并发出警告信息到控制台。）
+
+ribbon:
+  eager-load:
+    enabled: true # 开启饥饿加载
+    clients: # 指定饥饿加载的服务名称
+      - userservice
+
+
+
+
+mybatis:
+  type-aliases-package: org.yj.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+
