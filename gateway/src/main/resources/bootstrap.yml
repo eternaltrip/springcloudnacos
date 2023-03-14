@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: gatewayservice
+  profiles:
+    active: @spring.profiles.active@
+  cloud:
+    nacos:
+      server-addr: @nacos.addr@  #如果是nacos2.0以上的集群并采用nginx代理，这里就是nginx代理tcp的地址-1000，或者在代码中禁止使用偏移量来解决System.setProperty("nacos.server.grpc.port.offset","0");
+      config:
+        file-extension: yaml #文件后缀
+        namespace: @nacos.namespace@ #获取配置文件的命名空间，
+      discovery:
+        namespace: @nacos.namespace@ #发布服务实例的命名空间，
+        cluster-name: chengdu

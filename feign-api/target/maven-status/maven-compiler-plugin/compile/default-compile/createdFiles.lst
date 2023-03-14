@@ -1,0 +1,5 @@
+org\yj\feign\config\FeignDefaultConfiguration.class
+org\yj\feign\config\LoadBalancerConfig.class
+org\yj\feign\clients\UserClient.class
+org\yj\feign\FeignApp.class
+org\yj\feign\pojo\User.class

@@ -12,6 +12,7 @@
         <module>user</module>
         <module>order</module>
         <module>feign-api</module>
+        <module>gateway</module>
     </modules>
 
 
@@ -66,6 +67,15 @@
     </dependencies>
 
     <profiles>
+
+        <profile>
+            <id>dj</id>
+            <properties>
+                <spring.profiles.active>dj</spring.profiles.active>
+                <nacos.addr>localhost:8840</nacos.addr>
+                <nacos.namespace>84b49b39-b5d3-45e8-a161-45837b5fe323</nacos.namespace>
+            </properties>
+        </profile>
         <profile>
             <id>dev</id>
             <properties>
@@ -75,11 +85,11 @@
             </properties>
         </profile>
         <profile>
-            <id>local</id>
+            <id>home</id>
             <properties>
-                <spring.profiles.active>local</spring.profiles.active>
-                <nacos.addr>localhost:8848</nacos.addr>
-                <nacos.namespace>84b49b39-b5d3-45e8-a161-45837b5fe323</nacos.namespace>
+                <spring.profiles.active>home</spring.profiles.active>
+                <nacos.addr>192.168.1.4:8848</nacos.addr>
+                <nacos.namespace>6bbc779f-c220-45fc-ac62-65dbd4a6a41b</nacos.namespace>
             </properties>
         </profile>
     </profiles>
