@@ -4,18 +4,16 @@ package org.yj.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.yj.clients.UserClient;
+import org.yj.feign.clients.UserClient;
+import org.yj.feign.pojo.User;
 import org.yj.mapper.OrderMapper;
 import org.yj.pojo.Order;
-import org.yj.pojo.User;
 
 @Service
 public class OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
-    @Autowired
-    private RestTemplate restTemplate;
 
 
     /**

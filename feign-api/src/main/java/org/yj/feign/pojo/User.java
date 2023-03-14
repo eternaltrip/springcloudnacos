@@ -1,4 +1,4 @@
-package org.yj.pojo;
+package org.yj.feign.pojo;
 
 import lombok.Data;
 

@@ -7,6 +7,8 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import org.yj.feign.clients.UserClient;
+import org.yj.feign.config.FeignDefaultConfiguration;
 
 /**
  * LoadBalancerClient是针对要访问的服务做负载均衡配置。
@@ -15,7 +17,9 @@ import org.springframework.web.client.RestTemplate;
  */
 
 
-@EnableFeignClients
+@EnableFeignClients(clients = {UserClient.class} ,defaultConfiguration = FeignDefaultConfiguration.class)
+
+// @EnableFeignClients(basePackages = "org.yj") //这里可以通过扫描路径的方式，把所有的feign都导入
 @SpringBootApplication
 public class CloudOrderApp
 {

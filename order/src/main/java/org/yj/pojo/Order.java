@@ -1,6 +1,7 @@
 package org.yj.pojo;
 
 import lombok.Data;
+import org.yj.feign.pojo.User;
 
 @Data
 public class Order {

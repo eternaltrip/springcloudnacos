@@ -22,10 +22,19 @@ ribbon:
       - userservice
 
 feign:
-  client:
-    config:
-      default: #这里的default是全局的配置，对所有feign接口都生效
-        logger-level: full  #全部日志
+  #下面的配置已经转移到java代码配置
+#  client:
+#    config:
+#      default: #这里的default是全局的配置，对所有feign接口都生效
+#        logger-level: basic  #尽量不要使用full来设置，避免打印的日志太多，
+#      userservice: #这里可以对单独的服务做设定
+#        logger-level: basic
+  #使用httpclient作为feign的连接池。
+  httpclient:
+    enabled: true #开关，下面的值需要经过压力测试进行设定
+    max-connections: 400 #最大链接数
+    max-connections-per-route: 50 #单个路径的最大链接树
+
 
 
 mybatis:
