@@ -47,6 +47,8 @@
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-httpclient</artifactId>
         </dependency>
+
+        <!--自定应的feign接口模块-->
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>feign-api</artifactId>
