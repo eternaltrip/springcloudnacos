@@ -3,16 +3,6 @@ server:
 
 
 spring:
-  application:
-    name: orderservice
-  cloud:
-    nacos:
-      server-addr: localhost:8848
-      discovery:
-        cluster-name: chengdu #设置集群名称
-        namespace: 3b0a8c43-b94e-43a5-89b2-43ac17968344 #这里是设置服务注册的命名空间（不同的命名空间的服务不互通）
-#        ephemeral: false #是否临时实例（默认true）。false时这个实例即使无法链接也不会成为无效服务（nacos2.1版本，集群模式会有注册不上服务的问题）
-
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3308/cloud_order?serverTimezone=UTC

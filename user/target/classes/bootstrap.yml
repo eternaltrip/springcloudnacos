@@ -2,13 +2,13 @@ spring:
   application:
     name: userservice
   profiles:
-    active: dev
+    active: local
   cloud:
     nacos:
       server-addr: localhost:8848  #如果是nacos2.0以上的集群并采用nginx代理，这里就是nginx代理tcp的地址-1000，或者在代码中禁止使用偏移量来解决System.setProperty("nacos.server.grpc.port.offset","0");
       config:
         file-extension: yaml #文件后缀
-        namespace: 3b0a8c43-b94e-43a5-89b2-43ac17968344 #获取配置文件的命名空间，
+        namespace: 84b49b39-b5d3-45e8-a161-45837b5fe323 #获取配置文件的命名空间，
       discovery:
-        namespace: 3b0a8c43-b94e-43a5-89b2-43ac17968344 #发布服务实例的命名空间，
+        namespace: 84b49b39-b5d3-45e8-a161-45837b5fe323 #发布服务实例的命名空间，
         cluster-name: chengdu
