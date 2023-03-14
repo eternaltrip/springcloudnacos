@@ -64,6 +64,36 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+                <nacos.addr>localhost:8848</nacos.addr>
+                <nacos.namespace>3b0a8c43-b94e-43a5-89b2-43ac17968344</nacos.namespace>
+            </properties>
+        </profile>
+        <profile>
+            <id>local</id>
+            <properties>
+                <spring.profiles.active>local</spring.profiles.active>
+                <nacos.addr>localhost:8848</nacos.addr>
+                <nacos.namespace>84b49b39-b5d3-45e8-a161-45837b5fe323</nacos.namespace>
+            </properties>
+        </profile>
+    </profiles>
 
+
+
+    <!--下面的代码不启用的时候，yml这种配置文件中获取不到pom中配置的数据，-->
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!--开启过滤，用指定的参数替换directory下的文件中的参数-->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
 </project>
