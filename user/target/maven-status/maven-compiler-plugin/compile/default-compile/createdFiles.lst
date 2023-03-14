@@ -1,6 +1,0 @@
-org\yj\config\SalesProperties.class
-org\yj\pojo\User.class
-org\yj\web\UserController.class
-org\yj\mapper\UserMapper.class
-org\yj\service\UserService.class
-org\yj\CloudUserApp.class
