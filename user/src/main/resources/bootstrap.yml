@@ -1,3 +1,6 @@
+
+#bootstrap.yml 中的文件是先于application配置文件读取的，所以这里，可以从nacos远程获取配置文件
+#使用远程配置文件的格式，要和${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}一致
 spring:
   application:
     name: userservice

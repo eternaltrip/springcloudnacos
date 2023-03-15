@@ -2,7 +2,14 @@ server:
   port: 8070
 
 spring:
+  application:
+    name: gatewayservice
   cloud:
+    nacos:
+      server-addr: @nacos.addr@
+      discovery:
+        namespace: @nacos.namespace@ #发布服务实例的命名空间，
+        cluster-name: chengdu #发布服务的集群实例名称（优先调用的集群服务实例）
     gateway:
       routes:
         - id: user-service # 路由标示，必须唯一
