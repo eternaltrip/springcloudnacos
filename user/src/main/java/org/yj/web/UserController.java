@@ -40,9 +40,11 @@ public class UserController {
      * @return 用户
      */
     @GetMapping("/{id}")
-    public User queryById(@PathVariable("id") Long id) {
+    public User queryById(@PathVariable("id") Long id ,
+                          @RequestHeader(value = "X-Request-red" ,required = false) String head) {
         System.out.println(environment.getProperty("local.server.port"));
         System.out.println(salesProperties.toString());
+        System.out.println(head);
         return userService.queryById(id);
     }
 }
