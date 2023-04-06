@@ -57,6 +57,19 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.2.9</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -69,27 +82,11 @@
     <profiles>
 
         <profile>
-            <id>dj</id>
-            <properties>
-                <spring.profiles.active>dj</spring.profiles.active>
-                <nacos.addr>localhost:8840</nacos.addr>
-                <nacos.namespace>84b49b39-b5d3-45e8-a161-45837b5fe323</nacos.namespace>
-            </properties>
-        </profile>
-        <profile>
             <id>dev</id>
             <properties>
                 <spring.profiles.active>dev</spring.profiles.active>
                 <nacos.addr>localhost:8848</nacos.addr>
                 <nacos.namespace>3b0a8c43-b94e-43a5-89b2-43ac17968344</nacos.namespace>
-            </properties>
-        </profile>
-        <profile>
-            <id>home</id>
-            <properties>
-                <spring.profiles.active>home</spring.profiles.active>
-                <nacos.addr>192.168.1.4:8848</nacos.addr>
-                <nacos.namespace>6bbc779f-c220-45fc-ac62-65dbd4a6a41b</nacos.namespace>
             </properties>
         </profile>
     </profiles>
