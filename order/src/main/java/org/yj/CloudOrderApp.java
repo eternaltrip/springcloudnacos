@@ -2,11 +2,9 @@ package org.yj;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClients;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
+import org.yj.config.CustomLoadBalancerConfig;
 import org.yj.feign.clients.UserClient;
 import org.yj.feign.config.FeignDefaultConfiguration;
 
@@ -18,7 +16,7 @@ import org.yj.feign.config.FeignDefaultConfiguration;
 
 
 @EnableFeignClients(clients = {UserClient.class} ,defaultConfiguration = FeignDefaultConfiguration.class)
-
+@LoadBalancerClients(defaultConfiguration = {CustomLoadBalancerConfig.class})
 // @EnableFeignClients(basePackages = "org.yj") //这里可以通过扫描路径的方式，把所有的feign都导入
 @SpringBootApplication
 public class CloudOrderApp
@@ -27,14 +25,6 @@ public class CloudOrderApp
     {
         SpringApplication.run(CloudOrderApp.class,args);
     }
-
-
-    @Bean
-    @LoadBalanced
-    public RestTemplate getRestTemplate(){
-        return new RestTemplate();
-    }
-
 
 
 }

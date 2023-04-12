@@ -1,6 +1,7 @@
 package org.yj.service;
 
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -37,5 +38,12 @@ public class OrderService {
 
         // 4.返回
         return order;
+    }
+
+
+
+    @SentinelResource("goods")
+    public void queryGoods(){
+        System.out.println("查询商品");
     }
 }

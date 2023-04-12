@@ -8,17 +8,23 @@ spring:
   shardingsphere:
     datasource:
       names:
-        master, slave
+        master, slave1 ,slave2
       master:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/cloud_order?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://124.223.103.8:3306/cloud_order?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
         username: root
         password: yangjin15@#*A
-      slave:
+      slave1:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3307/cloud_order?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://124.223.103.8:3307/cloud_order?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+        username: root
+        password: yangjin15@#*A
+      slave2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://124.223.103.8:3308/cloud_order?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
         username: root
         password: yangjin15@#*A
     masterslave:
@@ -29,7 +35,7 @@ spring:
       # 主库数据源名称
       master-data-source-name: master
       # 从库数据源名称列表，多个逗号分隔
-      slave-data-source-names: slave
+      slave-data-source-names: slave1, slave2
     props:
       sql:
         show: true #开启SQL显示，默认false
@@ -41,6 +47,10 @@ spring:
       discovery:
         namespace: @nacos.namespace@ #发布服务实例的命名空间，
         cluster-name: chengdu
+    sentinel:
+      transport:
+        dashboard: localhost:8098 #sentinel 控制台地址
+      web-context-unify: false #关闭context整合，不然会导致链路模式失效
 
 #nacos和euraka的区别：nacos可以主动推送服务实例，nacos默认ap模式，和eureka一样，但是当实例中由非临时实例时，nacos转化成cp模式（高可靠）
 
@@ -68,6 +78,8 @@ feign:
     enabled: true #开关，下面的值需要经过压力测试进行设定
     max-connections: 400 #最大链接数
     max-connections-per-route: 50 #单个路径的最大链接树
+  sentinel:
+    enabled: true #开启feign接口的sentinel功能（主要是为了熔断和降级）
 
 
 

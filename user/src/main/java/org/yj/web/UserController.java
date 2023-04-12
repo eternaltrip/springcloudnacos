@@ -45,6 +45,13 @@ public class UserController {
         System.out.println(environment.getProperty("local.server.port"));
         System.out.println(salesProperties.toString());
         System.out.println(head);
+        if(id == 1){
+            try {
+                Thread.sleep(60);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         return userService.queryById(id);
     }
 }
