@@ -5,7 +5,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.yj.feign.clients.fallback.UserClientFallbackFactory;
-import org.yj.feign.config.FeignDefaultConfiguration;
 import org.yj.feign.pojo.User;
 
 

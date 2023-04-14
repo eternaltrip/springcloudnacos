@@ -25,6 +25,7 @@ spring:
 #            - After=   #通过在特定时间之后才能访问
           filters:
             - AddRequestHeader=X-Request-red, blue_order
+            - AddRequestHeader=origin, gateway
       default-filters: #这里是配置所有的过滤器（上面的单独配置的过滤器依然有效，并且排在这个过滤器之后）
         - AddRequestHeader=X-Request-red, blue_all
       globalcors: #全局的跨域处理

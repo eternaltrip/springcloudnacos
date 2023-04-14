@@ -1,0 +1,19 @@
+
+spring:
+  cloud:
+    nacos:
+      server-addr: @nacos.addr@  #如果是nacos2.0以上的集群并采用nginx代理，这里就是nginx代理tcp的地址-1000，或者在代码中禁止使用偏移量来解决System.setProperty("nacos.server.grpc.port.offset","0");
+      discovery:
+        namespace: @nacos.namespace@ #发布服务实例的命名空间，
+        cluster-name: chengdu
+    sentinel:
+      transport:
+        dashboard: localhost:8098 #sentinel 控制台地址
+      web-context-unify: false #关闭context整合，不然会导致链路模式失效
+
+
+#针对某个服务做负载均衡
+userservice:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule  # 负载均衡规则（这里是优先访问同集群实例，如果同集群挂了，那么就会访问其他的集群，并发出警告信息到控制台。）
+

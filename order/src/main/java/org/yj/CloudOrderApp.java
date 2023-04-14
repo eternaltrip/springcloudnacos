@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClients;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.yj.config.CustomLoadBalancerConfig;
+import org.yj.config.loadbalancer.CustomLoadBalancerConfig;
 import org.yj.feign.clients.UserClient;
 import org.yj.feign.config.FeignDefaultConfiguration;
 
