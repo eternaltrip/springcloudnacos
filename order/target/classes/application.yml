@@ -1,59 +1,23 @@
-server:
-  port: 8081
+
 
 
 spring:
   application:
     name: orderservice
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3308/cloud_order?serverTimezone=UTC
-    username: root
-    password: 123456
-  cloud:
-    nacos:
-      server-addr: localhost:8840  #如果是nacos2.0以上的集群并采用nginx代理，这里就是nginx代理tcp的地址-1000，或者在代码中禁止使用偏移量来解决System.setProperty("nacos.server.grpc.port.offset","0");
-      discovery:
-        namespace: 84b49b39-b5d3-45e8-a161-45837b5fe323 #发布服务实例的命名空间，
-        cluster-name: chengdu
-
-#nacos和euraka的区别：nacos可以主动推送服务实例，nacos默认ap模式，和eureka一样，但是当实例中由非临时实例时，nacos转化成cp模式（高可靠）
-
-#针对某个服务做负载均衡
-userservice:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule  # 负载均衡规则（这里是优先访问同集群实例，如果同集群挂了，那么就会访问其他的集群，并发出警告信息到控制台。）
-
-ribbon:
-  eager-load:
-    enabled: true # 开启饥饿加载
-    clients: # 指定饥饿加载的服务名称
-      - userservice
-
-feign:
-  #下面的配置已经转移到java代码配置
-#  client:
-#    config:
-#      default: #这里的default是全局的配置，对所有feign接口都生效
-#        logger-level: basic  #尽量不要使用full来设置，避免打印的日志太多，
-#      userservice: #这里可以对单独的服务做设定
-#        logger-level: basic
-  #使用httpclient作为feign的连接池。
-  httpclient:
-    enabled: true #开关，下面的值需要经过压力测试进行设定
-    max-connections: 400 #最大链接数
-    max-connections-per-route: 50 #单个路径的最大链接树
-
-
+  main:
+    allow-bean-definition-overriding: true #当项目中有相同的类名时，直接覆盖
+  profiles:
+    active: @spring.profiles.active@
+    include: @spring.profiles.active@DB ,@spring.profiles.active@Feign ,@spring.profiles.active@Nacos
 
 mybatis:
   type-aliases-package: org.yj.pojo
   configuration:
     map-underscore-to-camel-case: true
-logging:
-  level:
-    cn.itcast: debug
-  pattern:
-    dateformat: MM-dd HH:mm:ss:SSS
+
+
+
+
+
 
 

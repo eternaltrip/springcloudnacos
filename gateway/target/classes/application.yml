@@ -6,9 +6,9 @@ spring:
     name: gatewayservice
   cloud:
     nacos:
-      server-addr: localhost:8840
+      server-addr: @nacos.addr@
       discovery:
-        namespace: 84b49b39-b5d3-45e8-a161-45837b5fe323 #发布服务实例的命名空间，
+        namespace: @nacos.namespace@ #发布服务实例的命名空间，
         cluster-name: chengdu #发布服务的集群实例名称（优先调用的集群服务实例）
     gateway:
       routes:
@@ -16,10 +16,34 @@ spring:
           uri: lb://userservice # 路由的目标地址
           predicates: # 路由断言，判断请求是否符合规则
             - Path=/user/** # 路径断言，判断路径是否是以/user开头，如果是则符合
+          filters: #配置过滤器（过滤器能做很多事，）
+            - AddRequestHeader=X-Request-red, blue-user
         - id: order-service
           uri: lb://orderservice
           predicates:
             - Path=/order/**
+#            - After=   #通过在特定时间之后才能访问
+          filters:
+            - AddRequestHeader=X-Request-red, blue_order
+            - AddRequestHeader=origin, gateway
+      default-filters: #这里是配置所有的过滤器（上面的单独配置的过滤器依然有效，并且排在这个过滤器之后）
+        - AddRequestHeader=X-Request-red, blue_all
+      globalcors: #全局的跨域处理
+        add-to-simple-url-handler-mapping: true #解决options请求被拦截问题
+        cors-configurations:
+          '[/**]':
+            allowed-origins: #允许哪些网站的跨域请求-
+              - "http://localhost:8090"
+              - "http: /www.leyou.com"
+            allowedMethods: #允许的跨域ajax的请求方式
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*" #允许在请求中携带的头信息
+            allowCredentials: true #是否允许携带cookie
+            maxAge: 360000 #这次跨域检测的有效期
 
 
 logging:

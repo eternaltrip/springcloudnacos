@@ -85,16 +85,16 @@
             <id>dev</id>
             <properties>
                 <spring.profiles.active>dev</spring.profiles.active>
-                <nacos.addr>124.223.103.8:8848</nacos.addr>
-                <nacos.namespace>3b0a8c43-b94e-43a5-89b2-43ac17968344</nacos.namespace>
+                <nacos.addr>192.168.188.130:8848</nacos.addr>
+                <nacos.namespace>7c3b4498-e88c-4a23-be14-1a7bdf56e720</nacos.namespace>
             </properties>
         </profile>
         <profile>
             <id>test</id>
             <properties>
                 <spring.profiles.active>test</spring.profiles.active>
-                <nacos.addr>124.223.103.8:8848</nacos.addr>
-                <nacos.namespace>3b0a8c43-b94e-43a5-89b2-43ac17968344</nacos.namespace>
+                <nacos.addr>192.168.188.130:8848</nacos.addr>
+                <nacos.namespace>fb31e0b6-d7b2-4c32-ac29-35ac522e6bac</nacos.namespace>
             </properties>
         </profile>
     </profiles>

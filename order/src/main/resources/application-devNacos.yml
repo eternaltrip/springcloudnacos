@@ -2,8 +2,8 @@
 spring:
   cloud:
     nacos:
-      server-addr: @nacos.addr@  #如果是nacos2.0以上的集群并采用nginx代理，这里就是nginx代理tcp的地址-1000，或者在代码中禁止使用偏移量来解决System.setProperty("nacos.server.grpc.port.offset","0");
       discovery:
+        server-addr: @nacos.addr@
         namespace: @nacos.namespace@ #发布服务实例的命名空间，
         cluster-name: chengdu
     sentinel:
